@@ -1,0 +1,16 @@
+#!name = 猫眼去广告
+#!desc = 拦截 HAR 中确认的猫眼商城广告位接口及广告素材
+#!author = loiiw
+#!homepage = https://github.com/loiiw/myads
+#!date = 2026-11-14
+#!tag = 猫眼,去广告
+
+[Rewrite]
+# HAR confirmed: store.maoyan.com/mmall/api/ads/api/position/detail
+^https?:\/\/store\.maoyan\.com\/mmall\/api\/ads\/api\/position\/detail(?:\?.*)?$ reject-dict
+
+# HAR confirmed: p0.pipi.cn/mediaplus/maoyantong_ads_fe/ image assets
+^https?:\/\/p0\.pipi\.cn\/mediaplus\/maoyantong_ads_fe\/.*\.(?:png|jpe?g|gif|webp)(?:\?.*)?$ reject-img
+
+[Mitm]
+hostname = store.maoyan.com,p0.pipi.cn
